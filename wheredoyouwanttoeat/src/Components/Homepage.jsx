@@ -22,11 +22,6 @@ function Homepage() {
 
   return (
     <div className="App">
-      <ButtonSpot type="button" buttonText="Find Your Spot Today!" />
-      <br />
-      <InterestButton type="button" buttonText="Football" />
-      <p>Latitude: {latitude}</p>
-      <p>Longitude: {longitude}</p>
       <CarouselComponent/>
     </div>
   );
