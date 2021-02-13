@@ -1,0 +1,19 @@
+.btnDefault {
+  background-color: #B46D5B;
+  border-color: #B46D5B;
+  color:#FFF;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.btnDefault:hover, .btnDefault:focus, .btnDefault:active, .btnDefault.active {
+  background-color: #d4735b;
+  border-color: #d4735b;
+  color:#FFF;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: large;
+  font-weight: bold;
+}
