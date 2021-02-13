@@ -1,28 +1,57 @@
 // import './Homepage.css';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axiosCalls from './Utils';
+import { axiosCalls, findTop, findTopFive } from './Utils';
 
-function buttonOnClick(buttonValue){
-    let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?input="+buttonValue+"&inputtype=textquery&fields=name,rating,opening_hours,place_id&radius=4000&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
-    const fetchData = async () =>{
-        await axiosCalls(url)
-        .then((res) => (setData(res.data.results)));
-}
+function Interests() {
 
-function Homepage() {
+    const { restaurantData, setRestaurantData } = useState([]);
+    const { activityData, setActivityData } = useState([]);
+    const { top, setTop } = useState([]);
+
+    function buttonOnClickRes(buttonValue) {
+        let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?input="+buttonValue+"&inputtype=textquery&fields=name,rating,opening_hours,place_id&radius=1&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
+        const fetchData = async () => {
+            await axiosCalls(url)
+                .then((res) => setRestaurantData((prevRestaurantData) => prevRestaurantData.concat(res.data.results)));
+        }
+
+        fetchData();
+        filterDataRes();
+    }
+
+    function buttonOnClickAct(buttonValue) {
+        let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?input="+buttonValue+"&inputtype=textquery&fields=name,rating,opening_hours,place_id&radius=1&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
+        const fetchData = async () => {
+            await axiosCalls(url)
+                .then((res) => setActivityData(res.data.results));
+        }
+
+        fetchData();
+        findHighest();
+    }
+
+    function findHighest() {
+        setTop((prevTop) => prevTop.push(findTop(activityData, setTop)));
+    }
+
+    function filterDataRes() {
+        findTopFive(restaurantData, setRestaurantData);
+    }
+
     return (
         <div className="App">
             <div id="food">
-                <Button onClick={()=> buttonOnClick('sandwich+shop')}>Sandwich</Button>
-                <Button onClick={()=> buttonOnClick('asian+restaurant')}>Asian</Button>
-                <Button onClick={()=> buttonOnClick('italian+restaurant')}>Italian</Button>
-                <Button onClick={()=> buttonOnClick('mexican+restaurant')}>Mexican</Button>
-                <Button onClick={()=> buttonOnClick('fast+food+restaurant')}>Fast Food</Button>
-                <Button onClick={()=> buttonOnClick('pizza+restaurant')}>Pizza</Button>
-                <Button onClick={()=> buttonOnClick('chicken+restaurant')}>Chicken</Button>
-                <Button onClick={()=> buttonOnClick('burger+restaurant')}>Burgers</Button>
-                <Button onClick={()=> buttonOnClick('american+restaurant')}>American</Button>
+                <Button onClick={()=> buttonOnClickRes('sandwich+shop')}>Sandwich</Button>
+                <Button onClick={()=> buttonOnClickRes('asian+restaurant')}>Asian</Button>
+                <Button onClick={()=> buttonOnClickRes('italian+restaurant')}>Italian</Button>
+                <Button onClick={()=> buttonOnClickRes('mexican+restaurant')}>Mexican</Button>
+                <Button onClick={()=> buttonOnClickRes('fast+food+restaurant')}>Fast Food</Button>
+                <Button onClick={()=> buttonOnClickRes('pizza+restaurant')}>Pizza</Button>
+                <Button onClick={()=> buttonOnClickRes('chicken+restaurant')}>Chicken</Button>
+                <Button onClick={()=> buttonOnClickRes('burger+restaurant')}>Burgers</Button>
+                <Button onClick={()=> buttonOnClickRes('american+restaurant')}>American</Button>
             </div>
 
             {/* <div id='books'>
@@ -38,20 +67,20 @@ function Homepage() {
             </div> */}
 
             <div id='other'>
-                <Button onClick={()=> buttonOnClick('art+museum')}>Art</Button>
-                <Button onClick={()=> buttonOnClick('history+museum')}>History</Button>
-                <Button onClick={()=> buttonOnClick('science+museum')}>STEM</Button>
-                <Button onClick={()=> buttonOnClick('beach')}>Beaches</Button>
-                <Button onClick={()=> buttonOnClick('park')}>Parks</Button>
-                <Button onClick={()=> buttonOnClick('coffee+shop')}>Coffee</Button>
+                <Button onClick={()=> buttonOnClickAct('art+museum')}>Art</Button>
+                <Button onClick={()=> buttonOnClickAct('history+museum')}>History</Button>
+                <Button onClick={()=> buttonOnClickAct('science+museum')}>STEM</Button>
+                <Button onClick={()=> buttonOnClickAct('beach')}>Beaches</Button>
+                <Button onClick={()=> buttonOnClickAct('park')}>Parks</Button>
+                <Button onClick={()=> buttonOnClickAct('coffee+shop')}>Coffee</Button>
                 {/* will be changed to dropdowns */}
-                <Button onClick={()=> buttonOnClick('book+store')}>Books</Button>
-                <Button onClick={()=> buttonOnClick('movie+theater')}>Movies</Button>
-                <Button onClick={()=> buttonOnClick('music+venue')}>Music</Button>
+                <Button onClick={()=> buttonOnClickAct('book+store')}>Books</Button>
+                <Button onClick={()=> buttonOnClickAct('movie+theater')}>Movies</Button>
+                <Button onClick={()=> buttonOnClickAct('music+venue')}>Music</Button>
             </div>
 
         </div>
     );
 }
 
-export default Homepage;
+export default Interests;
