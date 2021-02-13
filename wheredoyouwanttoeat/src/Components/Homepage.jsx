@@ -4,6 +4,7 @@ import './Homepage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ButtonSpot from './button/ButtonSpot';
 import { MainContext } from '../Components/context/MainContext';
+import CarouselComponent from './HomepageComponents/CarouselComponent';
 
 function Homepage() {
   const {latitude, setLatitude, longitude, setLongitude} = useContext(MainContext);
@@ -23,6 +24,7 @@ function Homepage() {
       <ButtonSpot type="button" buttonText="Find Your Spot Today!" />
       <p>Latitude: {latitude}</p>
       <p>Longitude: {longitude}</p>
+      <CarouselComponent/>
     </div>
   );
 }
