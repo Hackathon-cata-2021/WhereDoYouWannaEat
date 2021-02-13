@@ -1,7 +1,15 @@
 import styles from './FormComponent.module.css';
 import InterestButton from '../interest-button/InterestButton';
+import {useHistory} from 'react-router-dom';
 
 const FormComponent = () => {
+    
+    let history = useHistory();
+
+    const someRedirect = () => {
+        history.push('/Interests');
+    }
+    
     return(
         <div className={styles.card}>
             <form>
@@ -17,7 +25,7 @@ const FormComponent = () => {
                 <input className='block'/>
                 <br/>
                 <br/>
-                <InterestButton buttonText="Submit Today!" type="Submit" />
+                <InterestButton onClick={someRedirect} buttonText="Submit Today!" type="Submit" />
             </form>
         </div>
     )
