@@ -1,18 +1,45 @@
 // import './Homepage.css';
-import InterestButton from './interest-button/InterestButton'
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {axiosCalls} from './Utils';
-
-function setData(){};
-function buttonOnClick(buttonValue) {
-    let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?input=" + buttonValue + "&inputtype=textquery&fields=name,rating,opening_hours,place_id&radius=4000&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
-    const fetchData = async () => {
-        await axiosCalls(url)
-            .then((res) => (setData(res.data.results)));
-    }
-}
+import { axiosCalls, findTop, findTopFive } from './Utils';
 
 function Interests() {
+
+    const { restaurantData, setRestaurantData } = useState([]);
+    const { activityData, setActivityData } = useState([]);
+    const { top, setTop } = useState([]);
+
+    function buttonOnClickRes(buttonValue) {
+        let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?input="+buttonValue+"&inputtype=textquery&fields=name,rating,opening_hours,place_id&radius=1&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
+        const fetchData = async () => {
+            await axiosCalls(url)
+                .then((res) => setRestaurantData((prevRestaurantData) => prevRestaurantData.concat(res.data.results)));
+        }
+
+        fetchData();
+        filterDataRes();
+    }
+
+    function buttonOnClickAct(buttonValue) {
+        let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?input="+buttonValue+"&inputtype=textquery&fields=name,rating,opening_hours,place_id&radius=1&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
+        const fetchData = async () => {
+            await axiosCalls(url)
+                .then((res) => setActivityData(res.data.results));
+        }
+
+        fetchData();
+        findHighest();
+    }
+
+    function findHighest() {
+        setTop((prevTop) => prevTop.push(findTop(activityData, setTop)));
+    }
+
+    function filterDataRes() {
+        findTopFive(restaurantData, setRestaurantData);
+    }
+
     return (
         <div className="App">
             <div id="food">
