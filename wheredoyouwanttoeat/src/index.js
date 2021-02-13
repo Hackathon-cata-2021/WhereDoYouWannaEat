@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
 import { MainProvider } from './Components/context/MainContext';
 
 ReactDOM.render(
@@ -10,7 +11,7 @@ ReactDOM.render(
     <MainProvider>
       <App />
     </MainProvider>
-  </React.StrictMode>,
+</React.StrictMode>,
   document.getElementById('root')
 );
 
