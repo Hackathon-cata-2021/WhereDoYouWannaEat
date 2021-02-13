@@ -8,7 +8,6 @@ import image3 from '../../Resources/Images/image3.png'
 const CarouselComponent = () => {
     return(
         <div className={styles.body}>
-            <FormComponent/>
             <Carousel>
                 <Carousel.Item>
                     <img
@@ -32,6 +31,7 @@ const CarouselComponent = () => {
                     />
                 </Carousel.Item>
             </Carousel>
+            <FormComponent/>
         </div>
     );
 }

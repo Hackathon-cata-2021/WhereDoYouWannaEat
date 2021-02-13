@@ -1,8 +1,16 @@
-.form-div{
-    padding: 20px;
-    max-width: 400px;
+.card{
+    font-size: 20px;
+    background-color: #ffffffa4;
+    left: 50%;
+    max-width: 35%;
+    padding: 40px 30px;
+    position: fixed;
+    text-align: left;
+    bottom: 500px;
+    z-index: 99;
 }
 
 .block {
-    display:block;
+    display : block;
+    margin-right: 20px;
 }
