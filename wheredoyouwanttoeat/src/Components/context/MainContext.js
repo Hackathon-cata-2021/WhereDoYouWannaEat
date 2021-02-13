@@ -5,6 +5,7 @@ export const MainContext = createContext();
 export const MainProvider = ({ children }) => {
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
+    const [key, setKey] = useState('AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo')
 
     return (
         <MainContext.Provider
@@ -13,7 +14,9 @@ export const MainProvider = ({ children }) => {
                     latitude,
                     setLatitude,
                     longitude,
-                    setLongitude
+                    setLongitude,
+                    key,
+                    setKey
                 }
             }
             >
