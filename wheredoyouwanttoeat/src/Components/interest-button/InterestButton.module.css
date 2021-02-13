@@ -1,0 +1,13 @@
+.btnDefault {
+  background-color: transparent;
+  border-color: #00b8d8;
+  border-radius: 30px;
+  color:#00b8d8;
+}
+
+.btnDefault:hover, .btnDefault:focus, .btnDefault:active, .btnDefault.active {
+  background-color: transparent;
+  border-color: #00b8d8;
+  border-radius: 30px;
+  color:#00b8d8;
+}
