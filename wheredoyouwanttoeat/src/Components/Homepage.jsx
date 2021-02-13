@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ButtonSpot from './button/ButtonSpot';
 import InterestButton from './interest-button/InterestButton';
 import { MainContext } from '../Components/context/MainContext';
+import CarouselComponent from './HomepageComponents/CarouselComponent';
 
 function Homepage() {
   const {latitude, setLatitude, longitude, setLongitude} = useContext(MainContext);
@@ -26,6 +27,7 @@ function Homepage() {
       <InterestButton type="button" buttonText="Football" />
       <p>Latitude: {latitude}</p>
       <p>Longitude: {longitude}</p>
+      <CarouselComponent/>
     </div>
   );
 }
