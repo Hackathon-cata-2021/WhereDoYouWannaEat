@@ -1,10 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import styles from './InterestButton.module.css';
 
-const ButtonSpot = ({ buttonText, type }) => {
+const InterestButton = ({ buttonText, type, onClick }) => {
   return (
-    <Button type={type} className={styles.btnDefault}>{ buttonText }</Button> 
+    <Button type={type} onClick={onClick} className={styles.btnDefault}>{ buttonText }</Button> 
   )
 }
 
-export default ButtonSpot;
+export default InterestButton;
