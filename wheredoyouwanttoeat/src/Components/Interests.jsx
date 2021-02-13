@@ -53,17 +53,17 @@ function Interests() {
                 <Button onClick={()=> buttonOnClickRes('burger+restaurant')}>Burgers</Button>
                 <Button onClick={()=> buttonOnClickRes('american+restaurant')}>American</Button>
             </div>
-
+            <br />
             {/* <div id='books'>
-                <Button>Sandwich</Button>
+                <InterestButton type="button" buttonText="" >Sandwich</InterestButton>
             </div> */}
 
             {/* <div id='movies'>
-                <Button>Sandwich</Button>
+                <InterestButton type="button" buttonText="" >Sandwich</InterestButton>
             </div> */}
 
             {/* <div id='music'>
-                <Button>add music here</Button>
+                <InterestButton type="button" buttonText="" >add music here</InterestButton>
             </div> */}
 
             <div id='other'>
