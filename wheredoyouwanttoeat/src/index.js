@@ -8,6 +8,9 @@ import { MainProvider } from './Components/context/MainContext';
 
 ReactDOM.render(
   <MainProvider>
+    <script async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo&libraries=places&callback=initMap">
+    </script>
     <App />
   </MainProvider>,
   document.getElementById('root')
