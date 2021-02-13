@@ -2,7 +2,7 @@
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Homepage() {
+function Interests() {
     return (
         <div className="App">
             <div id="food">
@@ -48,4 +48,4 @@ function Homepage() {
     );
 }
 
-export default Homepage;
+export default Interests;
