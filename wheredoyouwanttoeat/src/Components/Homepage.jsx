@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { getLocation } from '../Components/Utils';
 import './Homepage.css';
-import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MainContext } from '../Components/context/MainContext';
 
