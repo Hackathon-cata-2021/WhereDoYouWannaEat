@@ -1,8 +1,10 @@
-const formComponent = () => {
+import styles from './FormComponent.module.css'
+
+const FormComponent = () => {
     return(
-        <div>
+        <div className={styles.formDiv}>
             <form>
-                <label>
+                <label className='block'>
                     What is your age?
                 </label>
                 <input/>
@@ -10,8 +12,10 @@ const formComponent = () => {
                     What is your partner's age?
                 </label>
                 <input/>
-                <button>Submit</button>    
+                <button>Find Your Date Today!</button>    
             </form>
         </div>
     )
 }
+
+export default FormComponent;

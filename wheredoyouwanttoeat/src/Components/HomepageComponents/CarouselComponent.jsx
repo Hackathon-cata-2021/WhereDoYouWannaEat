@@ -1,3 +1,4 @@
+import FormComponent from '../HomepageComponents/FormComponent';
 import Carousel from 'react-bootstrap/Carousel'
 import styles from './CarouselComponent.module.css'
 import image1 from '../../Resources/Images/image1.png'
@@ -7,6 +8,7 @@ import image3 from '../../Resources/Images/image3.png'
 const CarouselComponent = () => {
     return(
         <div className={styles.body}>
+            <FormComponent/>
             <Carousel>
                 <Carousel.Item>
                     <img
