@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { getLocation } from '../Components/Utils';
 import './Homepage.css';
-import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ButtonSpot from './button/ButtonSpot';
 import { MainContext } from '../Components/context/MainContext';
 
 function Homepage() {
@@ -20,6 +20,7 @@ function Homepage() {
 
   return (
     <div className="App">
+      <ButtonSpot type="button" buttonText="Find Your Spot Today!" />
       <p>Latitude: {latitude}</p>
       <p>Longitude: {longitude}</p>
     </div>
