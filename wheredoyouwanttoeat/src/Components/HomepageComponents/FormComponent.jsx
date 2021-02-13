@@ -1,5 +1,5 @@
 import styles from './FormComponent.module.css';
-import ButtonSpot from '../button/ButtonSpot';
+import InterestButton from '../interest-button/InterestButton';
 
 const FormComponent = () => {
     return(
@@ -17,7 +17,7 @@ const FormComponent = () => {
                 <input className='block'/>
                 <br/>
                 <br/>
-                <ButtonSpot buttonText="Submit Today!" type="Submit" />
+                <InterestButton buttonText="Submit Today!" type="Submit" />
             </form>
         </div>
     )

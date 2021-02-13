@@ -17,15 +17,15 @@ function Interests() {
         <div className="App">
             <div id="food">
                 <h3>Food</h3>
-                <InterestButton type="button" buttonText="Sandwich" onClick={() => buttonOnClick('sandwich+shop')}/>
-                <InterestButton type="button" buttonText="Asian" onClick={() => buttonOnClick('asian+restaurant')}/>
-                <InterestButton type="button" buttonText="Italian" onClick={() => buttonOnClick('italian+restaurant')}/>
-                <InterestButton type="button" buttonText="Mexican" onClick={() => buttonOnClick('mexican+restaurant')}/>
-                <InterestButton type="button" buttonText="Fast Food" onClick={() => buttonOnClick('fast+food+restaurant')}/>
-                <InterestButton type="button" buttonText="Pizza" onClick={() => buttonOnClick('pizza+restaurant')}/>
-                <InterestButton type="button" buttonText="Chicken" onClick={() => buttonOnClick('chicken+restaurant')}/>
-                <InterestButton type="button" buttonText="Burgers" onClick={() => buttonOnClick('burger+restaurant')}/>
-                <InterestButton type="button" buttonText="American" onClick={() => buttonOnClick('american+restaurant')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Sandwich" onClick={() => buttonOnClick('sandwich+shop')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Asian" onClick={() => buttonOnClick('asian+restaurant')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Italian" onClick={() => buttonOnClick('italian+restaurant')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Mexican" onClick={() => buttonOnClick('mexican+restaurant')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Fast Food" onClick={() => buttonOnClick('fast+food+restaurant')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Pizza" onClick={() => buttonOnClick('pizza+restaurant')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Chicken" onClick={() => buttonOnClick('chicken+restaurant')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Burgers" onClick={() => buttonOnClick('burger+restaurant')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="American" onClick={() => buttonOnClick('american+restaurant')}/>
             </div>
             <br />
             {/* <div id='books'>
@@ -43,16 +43,16 @@ function Interests() {
             <div id='other'>
                 <h3>Other Stuffs</h3>
 
-                <InterestButton type="button" buttonText="Art" onClick={() => buttonOnClick('art+museum')}/>
-                <InterestButton type="button" buttonText="History" onClick={() => buttonOnClick('history+museum')}/>
-                <InterestButton type="button" buttonText="STEM" onClick={() => buttonOnClick('science+museum')}/>
-                <InterestButton type="button" buttonText="Beaches" onClick={() => buttonOnClick('beach')}/>
-                <InterestButton type="button" buttonText="Parks" onClick={() => buttonOnClick('park')}/>
-                <InterestButton type="button" buttonText="Coffee" onClick={() => buttonOnClick('coffee+shop')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Art" onClick={() => buttonOnClick('art+museum')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="History" onClick={() => buttonOnClick('history+museum')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="STEM" onClick={() => buttonOnClick('science+museum')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Beaches" onClick={() => buttonOnClick('beach')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Parks" onClick={() => buttonOnClick('park')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Coffee" onClick={() => buttonOnClick('coffee+shop')}/>
                 {/* will be changed to dropdowns */}
-                <InterestButton type="button" buttonText="Books" onClick={() => buttonOnClick('book+store')}/>
-                <InterestButton type="button" buttonText="Movies" onClick={() => buttonOnClick('movie+theater')}/>
-                <InterestButton type="button" buttonText="Music" onClick={() => buttonOnClick('music+venue')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Books" onClick={() => buttonOnClick('book+store')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Movies" onClick={() => buttonOnClick('movie+theater')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Music" onClick={() => buttonOnClick('music+venue')}/>
             </div>
 
         </div>
