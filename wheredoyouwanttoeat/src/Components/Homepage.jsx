@@ -3,7 +3,7 @@ import './Homepage.css';
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Homepage() {
+function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -20,10 +20,9 @@ function Homepage() {
         >
           Learn React
         </a>
-        <title>Eat HEre</title>
       </header>
     </div>
   );
 }
 
-export default Homepage;
+export default App;
