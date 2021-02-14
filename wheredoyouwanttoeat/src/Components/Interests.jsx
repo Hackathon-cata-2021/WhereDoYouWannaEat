@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
-import Button from 'react-bootstrap/Button'
+import Loading from '../Components/loading/Loading';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import InterestButton from './interest-button/InterestButton'
-import { MainContext } from './context/MainContext';
 import { axiosCalls, findTop, findTopFive } from './Utils';
 import CardComponent from './card-component/CardComponent'
 import styles from './Interests.module.css';
 
 function Interests() {
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const [ restaurantData, setRestaurantData ] = useState([]);
 
@@ -35,6 +36,7 @@ function Interests() {
     });
 
     const buttonOnClickRes = (buttonValue, e) => {
+        setIsLoading(true);
         function fetchData() {
             axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
                 .then(response => filterRestaurants(restaurantData.concat(response.data.results)))
@@ -50,9 +52,11 @@ function Interests() {
     const filterRestaurants = (data) => {
         const x = findTopFive(data);
         setRestaurantData(x);
+        setIsLoading(false);
     }
 
     const buttonOnClickAct = async (buttonValue, e) => {
+        setIsLoading(true);
         function fetchData() {
             axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
                 .then(response => filterActivities(response.data.results))
@@ -68,12 +72,13 @@ function Interests() {
     const filterActivities = (data) => {
         const x = findTop(data);
         setFilteredActivities(prevFilteredActivities => [...prevFilteredActivities, x]);
+        setIsLoading(false);
     }
 
     return (
         <div className="App">
+            {isLoading && <Loading />}
             <div id="food">
-                
                 <h3>Food</h3>
                 <InterestButton type="button" interestClass={!isClicked.sandwich ? "btnDefault" : "btnDefault.active"} buttonText="Sandwich" onClick={(e) => buttonOnClickRes('sandwich+shop', e)}/>
                 <InterestButton type="button" interestClass={!isClicked.asian ? "btnDefault" : "btnDefault.active"} buttonText="Asian" onClick={(e) => buttonOnClickRes('asian+restaurant', e)}/>
