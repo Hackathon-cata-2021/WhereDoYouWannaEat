@@ -11,7 +11,11 @@ export const getLocation = (getCoordinates) => {
 export const axiosCalls = (path) => {
     return axios({
         method: 'get',
-        url: path
+        mode: 'cors',
+        url: path,
+        headers: {
+            "Access-Control-Allow-Origin": "*"
+        }
     });
 }
 
