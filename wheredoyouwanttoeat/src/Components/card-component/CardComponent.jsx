@@ -58,7 +58,7 @@ export default function ImgMediaCard({ cardHeading, placeId }) {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Learn More
+            View Details
         </Button>
         </CardActions>
       </Card>

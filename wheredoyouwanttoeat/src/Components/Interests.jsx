@@ -104,7 +104,7 @@ function Interests() {
             </div> */}
 
             <div id='other'>
-                <h3>Other Stuffs</h3>
+                <h3>Activities</h3>
 
                 <InterestButton type="button" interestClass={!isClicked.art ? "btnDefault" : "btnDefault.active"} buttonText="Art" onClick={(e) => buttonOnClickAct('art+museum', e)}/>
                 <InterestButton type="button" interestClass={!isClicked.history ? "btnDefault" : "btnDefault.active"} buttonText="History" onClick={(e) => buttonOnClickAct('history+museum', e)}/>
