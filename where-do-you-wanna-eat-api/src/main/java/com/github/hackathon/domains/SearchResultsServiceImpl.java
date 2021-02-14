@@ -37,7 +37,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
     try {
       String requestUrl
           = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + string
-          + "&fields=name,rating,formatted_phone_number,icon,url,formatted_address&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
+          + "&fields=name,rating,formatted_phone_number,icon,website,formatted_address&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
       response = restTemplate.getForEntity(
           requestUrl, String.class, string
       );
