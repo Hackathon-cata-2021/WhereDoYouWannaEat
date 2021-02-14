@@ -5,14 +5,41 @@ import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps
 import 'bootstrap/dist/css/bootstrap.min.css';
 import InterestButton from './interest-button/InterestButton'
 import { MainContext } from './context/MainContext';
-import { axiosCalls } from './Utils';
+import { axiosCalls, findTop, findTopFive } from './Utils';
 
 function Interests() {
+    const { restaurantData, setRestaurantData } = useState([]);
+
+    const { activityData, setActivityData } = useState([]);
+
+    const { filteredActivities, setFilteredActivities } = useState([]);
+
     const buttonOnClickRes = (buttonValue) => {
         const fetchData = async () => {
             axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
-                .then(response => console.log(response));
+                .then(response => setRestaurantData(prevRestaurantData => prevRestaurantData.concat(response.data.results)))
         }
+
+        fetchData();
+        filterRestaurants();
+    }
+
+    const filterRestaurants = () => {
+        findTopFive(restaurantData, setRestaurantData);
+    }
+
+    const buttonOnClickAct = (buttonValue) => {
+        const fetchData = async () => {
+            axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
+                .then(response => setActivityData(response.data.results))
+        }
+        
+        fetchData();
+        filterActivities();
+    }
+
+    const filterActivities = () => {
+        setFilteredActivities(prevFilteredActivities => prevFilteredActivities.push(findTop(activityData)));
     }
 
     return (
