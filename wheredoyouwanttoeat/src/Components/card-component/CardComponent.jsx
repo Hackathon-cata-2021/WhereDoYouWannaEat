@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard() {
+export default function ImgMediaCard( {cardHeading} ) {
   const classes = useStyles();
 
   return (
@@ -29,7 +29,7 @@ export default function ImgMediaCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Some Text
+            { cardHeading }
           </Typography>
         </CardContent>
       </CardActionArea>
