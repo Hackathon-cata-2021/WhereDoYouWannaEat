@@ -15,15 +15,17 @@ export const axiosCalls = (path) => {
     });
 }
 
-export const findTopFive = (data, setData) => {
+export const findTopFive = (data) => {
     const result = data.sort(function (a, b) {
         return a.rating - b.rating;
     });
 
-    setData(result.slice(result.length-4, result.length-1));
+    const x = result.slice(result.length-6, result.length-1);
+
+    return x;
 }
 
-export const findTop = (data, setData) => {
+export const findTop = (data) => {
     const result = data.sort(function (a, b) {
         return a.rating - b.rating;
     });

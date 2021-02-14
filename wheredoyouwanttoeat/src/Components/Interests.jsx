@@ -1,21 +1,19 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import Button from 'react-bootstrap/Button'
-import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import InterestButton from './interest-button/InterestButton'
 import { MainContext } from './context/MainContext';
 import { axiosCalls, findTop, findTopFive } from './Utils';
 
 function Interests() {
-    const { restaurantData, setRestaurantData } = useState([]);
+    const [ restaurantData, setRestaurantData ] = useState([]);
 
-    const { activityData, setActivityData } = useState([]);
+    const [ activityData, setActivityData ] = useState([]);
 
-    const { filteredActivities, setFilteredActivities } = useState([]);
+    const [ filteredActivities, setFilteredActivities ] = useState([]);
 
     const buttonOnClickRes = (buttonValue) => {
-        const fetchData = async () => {
+        function fetchData() {
             axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
                 .then(response => setRestaurantData(prevRestaurantData => prevRestaurantData.concat(response.data.results)))
         }
@@ -25,11 +23,12 @@ function Interests() {
     }
 
     const filterRestaurants = () => {
-        findTopFive(restaurantData, setRestaurantData);
+        const x = findTopFive(restaurantData);
+        setRestaurantData(x);
     }
 
     const buttonOnClickAct = (buttonValue) => {
-        const fetchData = async () => {
+        function fetchData() {
             axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
                 .then(response => setActivityData(response.data.results))
         }
@@ -39,7 +38,8 @@ function Interests() {
     }
 
     const filterActivities = () => {
-        setFilteredActivities(prevFilteredActivities => prevFilteredActivities.push(findTop(activityData)));
+        const x = findTop(activityData);
+        setFilteredActivities(prevFilteredActivities => [...prevFilteredActivities, x]);
     }
 
     return (
@@ -72,16 +72,16 @@ function Interests() {
             <div id='other'>
                 <h3>Other Stuffs</h3>
 
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Art" onClick={() => buttonOnClickRes('art+museum')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="History" onClick={() => buttonOnClickRes('history+museum')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="STEM" onClick={() => buttonOnClickRes('science+museum')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Beaches" onClick={() => buttonOnClickRes('beach')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Parks" onClick={() => buttonOnClickRes('park')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Coffee" onClick={() => buttonOnClickRes('coffee+shop')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Art" onClick={() => buttonOnClickAct('art+museum')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="History" onClick={() => buttonOnClickAct('history+museum')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="STEM" onClick={() => buttonOnClickAct('science+museum')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Beaches" onClick={() => buttonOnClickAct('beach')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Parks" onClick={() => buttonOnClickAct('park')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Coffee" onClick={() => buttonOnClickAct('coffee+shop')}/>
                 {/* will be changed to dropdowns */}
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Books" onClick={() => buttonOnClickRes('book+store')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Movies" onClick={() => buttonOnClickRes('movie+theater')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Music" onClick={() => buttonOnClickRes('music+venue')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Books" onClick={() => buttonOnClickAct('book+store')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Movies" onClick={() => buttonOnClickAct('cinema')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Music" onClick={() => buttonOnClickAct('music+venue')}/>
             </div>
             <Button>Show Results</Button>
         </div>
