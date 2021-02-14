@@ -20,7 +20,6 @@ function Interests() {
         }
 
         fetchData();
-        filterRestaurants();
     }
 
     const filterRestaurants = (data) => {
