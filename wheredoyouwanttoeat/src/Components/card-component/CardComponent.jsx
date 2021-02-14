@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { axiosCalls } from '../Utils';
 
 const useStyles = makeStyles({
   root: {
@@ -20,8 +21,30 @@ export default function ImgMediaCard({ cardHeading, placeId }) {
 
   const [show, setShow] = useState(false);
 
+  const [results, setResults] = useState({
+    name: '',
+    rating: '',
+    formatted_phone_number: '',
+    icon: '',
+    website: '',
+    formatted_address: ''    
+  });
+
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
+  const handleShow = () => {
+    setShow(true);
+    function fetchData() {
+      axiosCalls(`http://localhost:8080/search-results/details/${placeId}`)
+        .then(response => setData(response.data.result));
+    }
+
+    fetchData();
+  }
+
+  const setData = (data) => {
+    setResults({...results, name: data.name, rating: data.rating, formatted_phone_number: data.formatted_phone_number, icon: data.icon, website: data.website, formatted_address: data.formatted_address});
+  }
 
   return (
     <div>
@@ -52,15 +75,17 @@ export default function ImgMediaCard({ cardHeading, placeId }) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{results.name}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <p>Rating: {results.rating}</p>
+          <p>Phone Number: {results.formatted_phone_number}</p>
+          <p>Website: <a href={results.website}>Click Here</a></p>
+          <p>Address: {results.formatted_address}</p>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
