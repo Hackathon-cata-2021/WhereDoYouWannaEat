@@ -5,12 +5,11 @@ import InterestButton from './interest-button/InterestButton'
 import { MainContext } from './context/MainContext';
 import { axiosCalls, findTop, findTopFive } from './Utils';
 import CardComponent from './card-component/CardComponent'
+import styles from './Interests.module.css';
 
 function Interests() {
 
     const [ restaurantData, setRestaurantData ] = useState([]);
-
-    const [ activityData, setActivityData ] = useState([]);
 
     const [ filteredActivities, setFilteredActivities ] = useState([]);
 
@@ -29,18 +28,17 @@ function Interests() {
         setRestaurantData(x);
     }
 
-    const buttonOnClickAct = (buttonValue) => {
+    const buttonOnClickAct = async (buttonValue) => {
         function fetchData() {
             axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
-                .then(response => setActivityData(response.data.results))
+                .then(response => filterActivities(response.data.results))
         }
-        
+
         fetchData();
-        filterActivities();
     }
 
-    const filterActivities = () => {
-        const x = findTop(activityData);
+    const filterActivities = (data) => {
+        const x = findTop(data);
         setFilteredActivities(prevFilteredActivities => [...prevFilteredActivities, x]);
     }
 
@@ -86,9 +84,11 @@ function Interests() {
                 <InterestButton type="button" interestClass="btnDefault" buttonText="Music" onClick={() => buttonOnClickAct('music+venue')}/>
             </div>
             {/* <Button>Show Results</Button> */}
-            {filteredActivities.length != 0 && filteredActivities.map((activity) => (
-                <CardComponent cardHeading={activity.name}/>
-            ))}
+            <div className={styles.app}>
+                {filteredActivities.length != 0 && filteredActivities.map((activity) => (
+                    <CardComponent cardHeading={activity.name}/>
+                ))}
+            </div>
         </div>
     );
 }
