@@ -118,13 +118,13 @@ function Interests() {
                 <InterestButton type="button" interestClass={!isClicked.music ? "btnDefault" : "btnDefault.active"} buttonText="Music" onClick={(e) => buttonOnClickAct('music+venue', e)}/>
             </div>
             {/* <Button>Show Results</Button> */}
-            <h2>For Activities</h2>
+            <h2>Top Rated Activities</h2>
             <div className={styles.app}>
                 {filteredActivities.length != 0 && filteredActivities.map((activity) => (
                     <CardComponent placeId={activity.place_id} cardHeading={activity.name}/>
                 ))}
             </div>
-            <h2>For Restaurants</h2>
+            <h2>Top Rated Restaurants</h2>
             <div className={styles.app}>
             {restaurantData.length != 0 && restaurantData.map((restaurant) => (
                     <CardComponent placeId={restaurant.place_id} cardHeading={restaurant.name}/>
