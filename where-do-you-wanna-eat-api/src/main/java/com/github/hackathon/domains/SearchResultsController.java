@@ -17,8 +17,14 @@ public class SearchResultsController {
   @Autowired
   private SearchResultsService searchResultsService;
 
-  @GetMapping(value="/{string}")
+  @GetMapping(value = "/{string}")
   public ResponseEntity<String> getSearchResults(@PathVariable String string) {
     return new ResponseEntity<>(searchResultsService.getSearchResults(string), HttpStatus.OK);
   }
+
+  @GetMapping(value = "/details/{string}")
+  public ResponseEntity<String> getDetailsResults(@PathVariable String string) {
+    return new ResponseEntity<>(searchResultsService.getDetailsResults(string), HttpStatus.OK);
+  }
+
 }
