@@ -89,6 +89,11 @@ function Interests() {
                     <CardComponent cardHeading={activity.name}/>
                 ))}
             </div>
+            <div>
+            {restaurantData.length != 0 && restaurantData.map((restaurant) => (
+                    <CardComponent cardHeading={restaurant.name}/>
+                ))}
+            </div>
         </div>
     );
 }
