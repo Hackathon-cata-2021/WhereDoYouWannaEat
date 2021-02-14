@@ -4,6 +4,7 @@ import './Homepage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MainContext } from '../Components/context/MainContext';
 import CarouselComponent from './HomepageComponents/CarouselComponent';
+import LinearBuffer from './linear-buffer/LinearBuffer';
 
 function Homepage() {
   const {latitude, setLatitude, longitude, setLongitude} = useContext(MainContext);
@@ -21,6 +22,7 @@ function Homepage() {
   return (
     <div className="App">
       <CarouselComponent/>
+      <LinearBuffer />
     </div>
   );
 }
