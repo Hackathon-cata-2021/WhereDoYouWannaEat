@@ -82,7 +82,7 @@ function Interests() {
                 <InterestButton type="button" interestClass="btnDefault" buttonText="Movies" onClick={() => buttonOnClickAct('movie+theater')}/>
                 <InterestButton type="button" interestClass="btnDefault" buttonText="Music" onClick={() => buttonOnClickAct('music+venue')}/>
             </div>
-
+            <Button>Show Results</Button>
         </div>
     );
 }
