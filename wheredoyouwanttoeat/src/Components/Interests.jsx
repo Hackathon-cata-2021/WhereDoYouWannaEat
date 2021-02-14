@@ -4,8 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import InterestButton from './interest-button/InterestButton'
 import { MainContext } from './context/MainContext';
 import { axiosCalls, findTop, findTopFive } from './Utils';
+import CardComponent from './card-component/CardComponent'
 
 function Interests() {
+
     const [ restaurantData, setRestaurantData ] = useState([]);
 
     const [ activityData, setActivityData ] = useState([]);
@@ -83,7 +85,10 @@ function Interests() {
                 <InterestButton type="button" interestClass="btnDefault" buttonText="Movies" onClick={() => buttonOnClickAct('cinema')}/>
                 <InterestButton type="button" interestClass="btnDefault" buttonText="Music" onClick={() => buttonOnClickAct('music+venue')}/>
             </div>
-            <Button>Show Results</Button>
+            {/* <Button>Show Results</Button> */}
+            {filteredActivities.length != 0 && filteredActivities.map((activity) => (
+                <CardComponent cardHeading={activity.name}/>
+            ))}
         </div>
     );
 }
