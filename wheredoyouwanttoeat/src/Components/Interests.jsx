@@ -41,7 +41,6 @@ function Interests() {
         }
 
         fetchData();
-        filterRestaurants();
 
         const str = e.target.innerText.toLowerCase().replace(/\s/g, '');
 
