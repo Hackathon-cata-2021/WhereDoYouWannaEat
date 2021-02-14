@@ -1,44 +1,45 @@
-// import './Homepage.css';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { axiosCalls, findTop, findTopFive } from './Utils';
 import InterestButton from './interest-button/InterestButton'
+import { MainContext } from './context/MainContext';
+import { axiosCalls, findTop, findTopFive } from './Utils';
 
 function Interests() {
+    const [ restaurantData, setRestaurantData ] = useState([]);
 
-    const { restaurantData, setRestaurantData } = useState([]);
-    const { activityData, setActivityData } = useState([]);
-    const { top, setTop } = useState([]);
+    const [ activityData, setActivityData ] = useState([]);
 
-    function buttonOnClickRes(buttonValue) {
-        let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?input="+buttonValue+"&inputtype=textquery&fields=name,rating,opening_hours,place_id&radius=1&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
-        const fetchData = async () => {
-            await axiosCalls(url)
-                .then((res) => setRestaurantData((prevRestaurantData) => prevRestaurantData.concat(res.data.results)));
+    const [ filteredActivities, setFilteredActivities ] = useState([]);
+
+    const buttonOnClickRes = (buttonValue) => {
+        function fetchData() {
+            axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
+                .then(response => setRestaurantData(prevRestaurantData => prevRestaurantData.concat(response.data.results)))
         }
 
         fetchData();
-        filterDataRes();
+        filterRestaurants();
     }
 
-    function buttonOnClickAct(buttonValue) {
-        let url = "https://maps.googleapis.com/maps/api/place/textsearch/json?input="+buttonValue+"&inputtype=textquery&fields=name,rating,opening_hours,place_id&radius=1&key=AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo";
-        const fetchData = async () => {
-            await axiosCalls(url)
-                .then((res) => setActivityData(res.data.results));
+    const filterRestaurants = () => {
+        const x = findTopFive(restaurantData);
+        setRestaurantData(x);
+    }
+
+    const buttonOnClickAct = (buttonValue) => {
+        function fetchData() {
+            axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
+                .then(response => setActivityData(response.data.results))
         }
-
+        
         fetchData();
-        findHighest();
+        filterActivities();
     }
 
-    function findHighest() {
-        setTop((prevTop) => prevTop.push(findTop(activityData, setTop)));
-    }
-
-    function filterDataRes() {
-        findTopFive(restaurantData, setRestaurantData);
+    const filterActivities = () => {
+        const x = findTop(activityData);
+        setFilteredActivities(prevFilteredActivities => [...prevFilteredActivities, x]);
     }
 
     return (
@@ -79,7 +80,7 @@ function Interests() {
                 <InterestButton type="button" interestClass="btnDefault" buttonText="Coffee" onClick={() => buttonOnClickAct('coffee+shop')}/>
                 {/* will be changed to dropdowns */}
                 <InterestButton type="button" interestClass="btnDefault" buttonText="Books" onClick={() => buttonOnClickAct('book+store')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Movies" onClick={() => buttonOnClickAct('movie+theater')}/>
+                <InterestButton type="button" interestClass="btnDefault" buttonText="Movies" onClick={() => buttonOnClickAct('cinema')}/>
                 <InterestButton type="button" interestClass="btnDefault" buttonText="Music" onClick={() => buttonOnClickAct('music+venue')}/>
             </div>
             <Button>Show Results</Button>
