@@ -20,6 +20,7 @@ function Homepage() {
 
   return (
     <div className="App">
+      <h2>Where Do You Wanna Eat?</h2>
       <CarouselComponent/>
     </div>
   );
