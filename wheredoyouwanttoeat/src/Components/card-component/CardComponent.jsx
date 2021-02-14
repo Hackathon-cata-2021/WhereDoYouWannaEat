@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard({ cardHeading }) {
+export default function ImgMediaCard({ cardHeading, placeId }) {
   const classes = useStyles();
 
   const [show, setShow] = useState(false);
