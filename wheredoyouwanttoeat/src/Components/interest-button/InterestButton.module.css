@@ -5,11 +5,11 @@
   color:#00b8d8;
 }
 
-.btnDefault:hover, .btnDefault:focus, .btnDefault:active, .btnDefault.active {
-  background-color: transparent;
+.btnDefault:hover, .btnDefault:focus, .btnDefault:active, .btnDefault.active, .clicked {
+  background-color: #00b8d8;
   border-color: #00b8d8;
   border-radius: 30px;
-  color:#00b8d8;
+  color:#fff;
 }
 
 .btnMainDefault {
@@ -22,7 +22,7 @@
   font-weight: bold;
 }
 
-.btnMainDefault:hover, .btnMainDefault:focus, .btnDefault:active, .btnMainDefault:active {
+.btnMainDefault:hover, .btnMainDefault:focus, .btnMainDefault:active, .btnMainDefault.active {
   background-color: #d4735b;
   border-color: #d4735b;
   color: #fff;

@@ -13,13 +13,38 @@ function Interests() {
 
     const [ filteredActivities, setFilteredActivities ] = useState([]);
 
-    const buttonOnClickRes = (buttonValue) => {
+    const [ isClicked, setIsClicked ] = useState({
+        sandwich: false,
+        asian: false,
+        italian: false,
+        mexican: false,
+        fastfood: false,
+        pizza: false,
+        chicken: false,
+        burgers: false,
+        american: false,
+        art: false,
+        history: false,
+        stem: false,
+        beaches: false,
+        parks: false,
+        coffee: false,
+        books: false,
+        movies: false,
+        music: false
+    });
+
+    const buttonOnClickRes = (buttonValue, e) => {
         function fetchData() {
             axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
                 .then(response => filterRestaurants(restaurantData.concat(response.data.results)))
         }
 
         fetchData();
+
+        const str = e.target.innerText.toLowerCase().replace(/\s/g, '');
+
+        setIsClicked({ ...isClicked, [str]: true });
     }
 
     const filterRestaurants = (data) => {
@@ -27,13 +52,17 @@ function Interests() {
         setRestaurantData(x);
     }
 
-    const buttonOnClickAct = async (buttonValue) => {
+    const buttonOnClickAct = async (buttonValue, e) => {
         function fetchData() {
             axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
                 .then(response => filterActivities(response.data.results))
         }
 
         fetchData();
+
+        const str = e.target.innerText.toLowerCase().replace(/\s/g, '');
+
+        setIsClicked({ ...isClicked, [str]: true });
     }
 
     const filterActivities = (data) => {
@@ -44,16 +73,17 @@ function Interests() {
     return (
         <div className="App">
             <div id="food">
+                
                 <h3>Food</h3>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Sandwich" onClick={() => buttonOnClickRes('sandwich+shop')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Asian" onClick={() => buttonOnClickRes('asian+restaurant')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Italian" onClick={() => buttonOnClickRes('italian+restaurant')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Mexican" onClick={() => buttonOnClickRes('mexican+restaurant')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Fast Food" onClick={() => buttonOnClickRes('fast+food+restaurant')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Pizza" onClick={() => buttonOnClickRes('pizza+restaurant')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Chicken" onClick={() => buttonOnClickRes('chicken+restaurant')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Burgers" onClick={() => buttonOnClickRes('burger+restaurant')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="American" onClick={() => buttonOnClickRes('american+restaurant')}/>
+                <InterestButton type="button" interestClass={!isClicked.sandwich ? "btnDefault" : "btnDefault.active"} buttonText="Sandwich" onClick={(e) => buttonOnClickRes('sandwich+shop', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.asian ? "btnDefault" : "btnDefault.active"} buttonText="Asian" onClick={(e) => buttonOnClickRes('asian+restaurant', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.italian ? "btnDefault" : "btnDefault.active"} buttonText="Italian" onClick={(e) => buttonOnClickRes('italian+restaurant', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.mexican ? "btnDefault" : "btnDefault.active"} buttonText="Mexican" onClick={(e) => buttonOnClickRes('mexican+restaurant', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.fastfood ? "btnDefault" : "btnDefault.active"} buttonText="Fast Food" onClick={(e) => buttonOnClickRes('fast+food+restaurant', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.pizza ? "btnDefault" : "btnDefault.active"} buttonText="Pizza" onClick={(e) => buttonOnClickRes('pizza+restaurant', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.chicken ? "btnDefault" : "btnDefault.active"} buttonText="Chicken" onClick={(e) => buttonOnClickRes('chicken+restaurant', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.burgers ? "btnDefault" : "btnDefault.active"} buttonText="Burgers" onClick={(e) => buttonOnClickRes('burger+restaurant', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.american ? "btnDefault" : "btnDefault.active"} buttonText="American" onClick={(e) => buttonOnClickRes('american+restaurant', e)}/>
             </div>
             <br />
             {/* <div id='books'>
@@ -71,16 +101,16 @@ function Interests() {
             <div id='other'>
                 <h3>Other Stuffs</h3>
 
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Art" onClick={() => buttonOnClickAct('art+museum')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="History" onClick={() => buttonOnClickAct('history+museum')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="STEM" onClick={() => buttonOnClickAct('science+museum')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Beaches" onClick={() => buttonOnClickAct('beach')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Parks" onClick={() => buttonOnClickAct('park')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Coffee" onClick={() => buttonOnClickAct('coffee+shop')}/>
+                <InterestButton type="button" interestClass={!isClicked.art ? "btnDefault" : "btnDefault.active"} buttonText="Art" onClick={(e) => buttonOnClickAct('art+museum', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.history ? "btnDefault" : "btnDefault.active"} buttonText="History" onClick={(e) => buttonOnClickAct('history+museum', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.stem ? "btnDefault" : "btnDefault.active"} buttonText="STEM" onClick={(e) => buttonOnClickAct('science+museum', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.beaches ? "btnDefault" : "btnDefault.active"} buttonText="Beaches" onClick={(e) => buttonOnClickAct('beach', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.parks ? "btnDefault" : "btnDefault.active"} buttonText="Parks" onClick={(e) => buttonOnClickAct('park', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.coffee ? "btnDefault" : "btnDefault.active"} buttonText="Coffee" onClick={(e) => buttonOnClickAct('coffee+shop', e)}/>
                 {/* will be changed to dropdowns */}
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Books" onClick={() => buttonOnClickAct('book+store')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Movies" onClick={() => buttonOnClickAct('cinema')}/>
-                <InterestButton type="button" interestClass="btnDefault" buttonText="Music" onClick={() => buttonOnClickAct('music+venue')}/>
+                <InterestButton type="button" interestClass={!isClicked.books ? "btnDefault" : "btnDefault.active"} buttonText="Books" onClick={(e) => buttonOnClickAct('book+store', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.movies ? "btnDefault" : "btnDefault.active"} buttonText="Movies" onClick={(e) => buttonOnClickAct('cinema', e)}/>
+                <InterestButton type="button" interestClass={!isClicked.music ? "btnDefault" : "btnDefault.active"} buttonText="Music" onClick={(e) => buttonOnClickAct('music+venue', e)}/>
             </div>
             {/* <Button>Show Results</Button> */}
             <h2>For Activities</h2>
