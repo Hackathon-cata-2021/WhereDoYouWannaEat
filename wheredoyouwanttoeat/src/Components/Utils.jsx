@@ -29,6 +29,6 @@ export const findTop = (data) => {
     const result = data.sort(function (a, b) {
         return a.rating - b.rating;
     });
-
+    console.log(result[result.length-1])
     return result[result.length-1];
 }
