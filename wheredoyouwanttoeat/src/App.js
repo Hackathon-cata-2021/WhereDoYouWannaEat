@@ -1,6 +1,7 @@
 import './App.css';
 import Homepage from './Components/Homepage';
 import Interests from './Components/Interests';
+import Display from './Components/Display';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 

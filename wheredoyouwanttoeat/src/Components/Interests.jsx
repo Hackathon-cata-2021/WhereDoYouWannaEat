@@ -4,8 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import InterestButton from './interest-button/InterestButton'
 import { MainContext } from './context/MainContext';
 import { axiosCalls, findTop, findTopFive } from './Utils';
+import { useHistory } from 'react-router-dom';
 
 function Interests() {
+
     const [ restaurantData, setRestaurantData ] = useState([]);
 
     const [ activityData, setActivityData ] = useState([]);
