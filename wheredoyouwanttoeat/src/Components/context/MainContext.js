@@ -3,8 +3,8 @@ import React, { createContext, useState } from 'react';
 export const MainContext = createContext();
 
 export const MainProvider = ({ children }) => {
-    const [latitude, setLatitude] = useState(null);
-    const [longitude, setLongitude] = useState(null);
+    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState('');
     const [key, setKey] = useState('AIzaSyCJoZQo8YwkU6LNHDWwMcPwd9DY5Kl4Neo')
 
     return (
