@@ -16,15 +16,15 @@ function Interests() {
     const buttonOnClickRes = (buttonValue) => {
         function fetchData() {
             axiosCalls(`http://localhost:8080/search-results/${buttonValue}`)
-                .then(response => setRestaurantData(prevRestaurantData => prevRestaurantData.concat(response.data.results)))
+                .then(response => filterRestaurants(restaurantData.concat(response.data.results)))
         }
 
         fetchData();
         filterRestaurants();
     }
 
-    const filterRestaurants = () => {
-        const x = findTopFive(restaurantData);
+    const filterRestaurants = (data) => {
+        const x = findTopFive(data);
         setRestaurantData(x);
     }
 
